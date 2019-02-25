@@ -34,7 +34,7 @@ public class GameGridGenerator {
         for(int x = 0; x < GRID_WIDTH; x++) {
             for(int y = 0; y < GRID_HEIGHT; y++) {
                 Image image = images.get(currentIndexOfImage);
-                tiles[x][y] = new MemoryTile(new ImageView(image));
+                tiles[x][y] = new MemoryTile(new ImageView(image), currentIndexOfImage);
 
                 timesImageUsed++;
 

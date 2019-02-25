@@ -31,14 +31,17 @@ public class GameMechanic {
             firstTile = memoryTile;
         } else {
             secondTile = memoryTile;
-            if(firstTile.getImageView().getImage().equals(secondTile.getImageView().getImage())) {
-                firstTile = null;
-                secondTile = null;
-                score++;
-                System.out.println("NOT Error!");
+
+            if(firstTile == secondTile) {
+                System.out.println("Clicked same tile!");
+            } else if(firstTile.getImageIndex().equals(secondTile.getImageIndex())) {
+                System.out.println("Clicked different tile with same image");
             } else {
-                System.out.println("Error!");
+                System.out.println("Clicked different tile with different image!");
             }
+
+            firstTile = null;
+            secondTile = null;
         }
     }
 }
