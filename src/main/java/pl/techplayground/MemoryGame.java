@@ -30,6 +30,7 @@ public class MemoryGame extends Application {
             if (event.getSource() instanceof MemoryTile) {
                 MemoryTile chb = (MemoryTile) event.getSource();
                 gameMechanic.tileClicked(chb);
+                gameMechanic.checkState();
             }
         };
 

@@ -1,7 +1,9 @@
 package pl.techplayground.model;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import pl.techplayground.util.ImageLoader;
 
 import java.util.Objects;
 
@@ -12,16 +14,30 @@ public class MemoryTile extends Button {
     private static final String EMPTY_STRING = "";
 
     private final ImageView imageView;
+    private final Image image;
     private final Integer imageIndex;
+    private boolean toggled;
 
-    public MemoryTile(ImageView imageView, Integer imageIndex) {
+    public MemoryTile(Image image, ImageView imageView, Integer imageIndex) {
         super(EMPTY_STRING, imageView);
 
-        this.imageIndex = imageIndex;
+        this.image = image;
         this.imageView = imageView;
+        this.imageIndex = imageIndex;
+        this.toggled = false;
+
+        imageView.setImage(ImageLoader.getDefaultImage());
 
         setWidth(MAX_TILE_HEIGHT);
         setHeight(MAX_TILE_WIDTH);
+    }
+
+    public void toggleOriginalImage() {
+        if(toggled) {
+            imageView.setImage(ImageLoader.getDefaultImage());
+        } else {
+            imageView.setImage(image);
+        }
     }
 
     public ImageView getImageView() {

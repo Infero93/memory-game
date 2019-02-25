@@ -9,6 +9,15 @@ import java.util.List;
 public class ImageLoader {
 
     private static List<Image> IMAGES;
+    private static Image DEFAULT_IMAGE;
+
+    public static Image getDefaultImage() {
+        if(DEFAULT_IMAGE == null) {
+            DEFAULT_IMAGE = new Image("/transparent.png", 64,64, true, false);
+        }
+
+        return DEFAULT_IMAGE;
+    }
 
     public static List<Image> getEmbbemedImages() {
 
