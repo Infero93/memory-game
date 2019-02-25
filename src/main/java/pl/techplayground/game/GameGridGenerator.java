@@ -1,4 +1,4 @@
-package pl.techplayground;
+package pl.techplayground.game;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,15 +11,15 @@ import java.util.Random;
 import static pl.techplayground.Configuration.*;
 
 
-public class GameGrid {
+public class GameGridGenerator {
 
     private Random random;
 
-    public GameGrid(Random random) {
+    public GameGridGenerator(Random random) {
         this.random = random;
     }
 
-    public MemoryTile[][] initializeGrid() {
+    public MemoryTile[][] generateGrid() {
         MemoryTile[][] tiles = new MemoryTile[GRID_WIDTH][GRID_HEIGHT];
         populateGrid(tiles);
         shuffleTiles(tiles);

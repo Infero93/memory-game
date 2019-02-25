@@ -1,25 +1,46 @@
 package pl.techplayground;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import pl.techplayground.GameMechanic;
+import pl.techplayground.game.GameGridGenerator;
+import pl.techplayground.game.GameMechanic;
+import pl.techplayground.model.MemoryTile;
+
+import java.util.Random;
+
+import static pl.techplayground.Configuration.GRID_HEIGHT;
+import static pl.techplayground.Configuration.GRID_WIDTH;
 
 public class HelloFX extends Application {
 
     @Override
     public void start(Stage stage) {
-        GameMechanic gameMechanic = new GameMechanic();
-        gameMechanic.initializeGrid();
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
-        Button button[][] = gameMechanic.getTilesAsButtons();
-        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+        Random random = new Random();
+        GameGridGenerator gameGridGenerator = new GameGridGenerator(random);
+        GameMechanic gameMechanic = new GameMechanic(gameGridGenerator);
+        Button button[][] = gameMechanic.startNewGame();
+
+        EventHandler clicked = (EventHandler<ActionEvent>) event -> {
+            if (event.getSource() instanceof MemoryTile) {
+                MemoryTile chb = (MemoryTile) event.getSource();
+                gameMechanic.tileClicked(chb);
+            }
+        };
+
         GridPane gridPane = new GridPane();
+
+        for(int i = 0; i < GRID_WIDTH; i++) {
+            for(int j = 0; j < GRID_HEIGHT; j++) {
+                button[i][j].setOnAction(clicked);
+            }
+        }
+
         gridPane.addRow(0, button[0]);
         gridPane.addRow(1, button[1]);
         gridPane.addRow(2, button[2]);
