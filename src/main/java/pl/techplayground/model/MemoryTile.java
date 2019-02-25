@@ -3,19 +3,22 @@ package pl.techplayground.model;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
-public class MemoryTile {
+public class MemoryTile extends Button {
+
+    private static Integer BUTTON_SIZE = 64;
 
     private static final String EMPTY_STRING = "";
-    private final Button tile;
     private final ImageView imageView;
 
     public MemoryTile(ImageView imageView) {
-        this.imageView = imageView;
-        this.tile = new Button(EMPTY_STRING, imageView);
-    }
+        super(EMPTY_STRING, imageView);
+        setWidth(BUTTON_SIZE);
+        setHeight(BUTTON_SIZE);
 
-    public Button getTile() {
-        return tile;
+        this.imageView = imageView;
+
+        this.imageView.fitHeightProperty();
+        this.imageView.fitWidthProperty();
     }
 
     public ImageView getImageView() {
