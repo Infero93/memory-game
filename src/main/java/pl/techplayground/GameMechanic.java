@@ -30,32 +30,8 @@ public class GameMechanic {
         List<Integer> usedIndexes = new LinkedList<>();
         getImagesFromResources();
 
-        for(int x = 0; x < GRID_WIDTH; x++) {
-            for(int y = 0; y < GRID_HEIGHT; y++) {
-                tiles[x][y] = new MemoryTile(new ImageView(images[nextImage]));
-                imageCount++;
 
-                if(imageCount >= 2) {
-                    nextImage++;
-                    imageCount = 0;
-                }
 
-                if(nextImage >= 3) {
-                    nextImage = 0;
-                }
-            }
-        }
-
-        for(int i = 0; i < GRID_HEIGHT * GRID_WIDTH; i++) {
-            int x1 = random.nextInt(GRID_WIDTH);
-            int y1 = random.nextInt(GRID_HEIGHT);
-            int x2 = random.nextInt(GRID_WIDTH);
-            int y2 = random.nextInt(GRID_HEIGHT);
-
-            MemoryTile memoryTile = tiles[x1][y1];
-            tiles[x1][y1] = tiles[x2][y2];
-            tiles[x2][y2] = memoryTile;
-        }
     }
 
     public Button[][] getTilesAsButtons() {
