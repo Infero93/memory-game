@@ -16,9 +16,6 @@ public class MemoryTile extends Button {
         setHeight(BUTTON_SIZE);
 
         this.imageView = imageView;
-
-        this.imageView.fitHeightProperty();
-        this.imageView.fitWidthProperty();
     }
 
     public ImageView getImageView() {
