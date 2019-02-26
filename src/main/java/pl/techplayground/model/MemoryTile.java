@@ -35,8 +35,10 @@ public class MemoryTile extends Button {
     public void toggleOriginalImage() {
         if(toggled) {
             imageView.setImage(ImageLoader.getDefaultImage());
+            toggled = false;
         } else {
             imageView.setImage(image);
+            toggled = true;
         }
     }
 

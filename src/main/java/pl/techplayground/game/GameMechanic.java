@@ -37,14 +37,18 @@ public class GameMechanic {
     }
 
     public void checkState() {
-        if(firstTile == null) {
+        if(secondTile == null) {
             return;
         } else if(firstTile == secondTile) {
             System.out.println("Clicked same tile!");
         } else if(firstTile.getImageIndex().equals(secondTile.getImageIndex())) {
             System.out.println("Clicked different tile with same image");
+            firstTile.setDisable(true);
+            secondTile.setDisable(true);
         } else {
             System.out.println("Clicked different tile with different image!");
+            firstTile.toggleOriginalImage();
+            secondTile.toggleOriginalImage();
         }
 
         firstTile = null;
