@@ -20,6 +20,8 @@ public class GameGridGenerator {
     }
 
     public MemoryTile[][] generateGrid() {
+        if((GRID_WIDTH * GRID_HEIGHT) % GRID_MAX_SAME_IMAGE_COUNT != 0) throw new RuntimeException();
+
         MemoryTile[][] tiles = new MemoryTile[GRID_WIDTH][GRID_HEIGHT];
         populateGrid(tiles);
         shuffleTiles(tiles);
