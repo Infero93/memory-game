@@ -29,8 +29,7 @@ public class MemoryGame extends Application {
         EventHandler clicked = (EventHandler<ActionEvent>) event -> {
             if (event.getSource() instanceof MemoryTile) {
                 MemoryTile chb = (MemoryTile) event.getSource();
-                gameMechanic.tileClicked(chb);
-                gameMechanic.checkState();
+                gameMechanic.gameLoop(chb);
             }
         };
 

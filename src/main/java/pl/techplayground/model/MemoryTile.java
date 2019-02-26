@@ -32,14 +32,12 @@ public class MemoryTile extends Button {
         setHeight(MAX_TILE_WIDTH);
     }
 
+    public void toggleDefaultImage() {
+        imageView.setImage(ImageLoader.getDefaultImage());
+    }
+
     public void toggleOriginalImage() {
-        if(toggled) {
-            imageView.setImage(ImageLoader.getDefaultImage());
-            toggled = false;
-        } else {
-            imageView.setImage(image);
-            toggled = true;
-        }
+        imageView.setImage(image);
     }
 
     public ImageView getImageView() {

@@ -1,8 +1,8 @@
 package pl.techplayground;
 
 public class Configuration {
-    public static final Integer GRID_WIDTH = 3;
-    public static final Integer GRID_HEIGHT = 2;
+    public static final Integer GRID_WIDTH = 4;
+    public static final Integer GRID_HEIGHT = 4;
     public static final Integer GRID_MAX_SAME_IMAGE_COUNT = 2;
     public static final Boolean GRID_ALLOW_REUSE_IMAGES = true;
 
