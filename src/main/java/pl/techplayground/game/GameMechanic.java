@@ -7,31 +7,33 @@ import pl.techplayground.model.MemoryTile;
 public class GameMechanic {
 
     private GameGridGenerator gameGridGenerator;
-    private MemoryTile[][] tiles;
 
     private MemoryTile firstTile;
     private MemoryTile secondTile;
-    private Integer score;
+    private Integer score = 0;
     private Boolean pairFound;
 
     public GameMechanic(GameGridGenerator gameGridGenerator) {
         this.gameGridGenerator = gameGridGenerator;
+        resetGameState();
     }
 
     public Button[][] startNewGame() {
-        tiles = gameGridGenerator.generateGrid();
-        pairFound = false;
-        score = 0;
-        firstTile = null;
-        secondTile = null;
-
-        return tiles;
+        resetGameState();
+        return gameGridGenerator.generateGrid();
     }
 
     public void gameLoop(MemoryTile memoryTile) {
         clearTiles();
         tileClicked(memoryTile);
         checkState();
+    }
+
+    private void resetGameState() {
+        pairFound = false;
+        score = 0;
+        firstTile = null;
+        secondTile = null;
     }
 
     private void clearTiles() {
@@ -65,6 +67,7 @@ public class GameMechanic {
                 firstTile.setDisable(true);
                 secondTile.setDisable(true);
                 pairFound = true;
+                score += 1;
             } else {
                 System.out.println("Clicked different tile with different image!");
                 pairFound = false;
@@ -74,5 +77,9 @@ public class GameMechanic {
 
     private boolean bothTilesSelected() {
         return firstTile != null && secondTile != null;
+    }
+
+    public Integer getScore() {
+        return score;
     }
 }

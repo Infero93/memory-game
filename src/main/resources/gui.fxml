@@ -10,10 +10,9 @@
    <children>
       <Pane prefHeight="402.0" prefWidth="200.0">
          <children>
-            <Button fx:id="startNewGameButton" layoutX="13.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="173.0" text="Button" />
-            <Button fx:id="exitGameButton" layoutX="13.0" layoutY="356.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="173.0" text="Button" />
-            <Label layoutX="14.0" layoutY="20.0" prefHeight="17.0" prefWidth="38.0" text="Score" />
-            <Label layoutX="71.0" layoutY="20.0" prefHeight="17.0" prefWidth="120.0" text="Label" />
+            <Button fx:id="startNewGameButton" layoutX="14.0" layoutY="363.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="173.0" text="Start new game" />
+            <Label fx:id="labelScore" layoutX="14.0" layoutY="28.0" prefHeight="17.0" prefWidth="38.0" text="Score" />
+            <Label fx:id="outputScore" layoutX="66.0" layoutY="28.0" prefHeight="17.0" prefWidth="120.0" />
          </children>
       </Pane>
    </children>

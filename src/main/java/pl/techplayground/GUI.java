@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import pl.techplayground.game.GameMechanic;
@@ -15,7 +16,8 @@ import static pl.techplayground.Configuration.GRID_WIDTH;
 public class GUI {
     @FXML private FlowPane mainScene;
     @FXML private Button startNewGameButton;
-    @FXML private Button exitGameButton;
+    @FXML private Label labelScore;
+    @FXML private Label outputScore;
     private GridPane gameGrid;
 
     private GameMechanic gameMechanic;
@@ -24,28 +26,26 @@ public class GUI {
         if (event.getSource() instanceof MemoryTile) {
             MemoryTile tile = (MemoryTile) event.getSource();
             gameMechanic.gameLoop(tile);
+            updateScore();
         }
     };
-
-    public GUI() {
-
-    }
-
-    public GUI(GameMechanic gameMechanic) {
-        this.gameMechanic = gameMechanic;
-    }
 
     @FXML
     public void initialize() {
         startNewGameButton.setOnAction(this::handleStartNewGameButton);
     }
 
-    @FXML
     private void handleStartNewGameButton(ActionEvent event) {
         resetGameGrid();
     }
 
+    private void updateScore() {
+        Integer score = gameMechanic.getScore();
+        outputScore.textProperty().setValue(score.toString());
+    }
+
     private void resetGameGrid() {
+        updateScore();
         clearGameGrid();
         Button[][] memoryTiles = createNewTiles();
         createNewGameGrid(memoryTiles);
