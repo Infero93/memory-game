@@ -24,7 +24,7 @@ public class MemoryTile extends Button {
         this.imageView = imageView;
         this.imageIndex = imageIndex;
 
-        imageView.setImage(ImageLoader.getDefaultImage());
+        toggleDefaultImage();
 
         setWidth(MAX_TILE_HEIGHT);
         setHeight(MAX_TILE_WIDTH);

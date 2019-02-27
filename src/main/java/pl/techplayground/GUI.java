@@ -19,9 +19,9 @@ public class GUI {
     @FXML private FlowPane mainScene;
     @FXML private TilePane gameGridPane;
     @FXML private Button startNewGameButton;
-    @FXML private Label labelScore;
-    @FXML private Label outputScore;
+    @FXML private Label outputPairFound;
     @FXML private Label outputMistakes;
+    @FXML private Label outputCurrentScore;
     @FXML private Label outputBestScore;
 
     private GameMechanic gameMechanic;
@@ -34,9 +34,7 @@ public class GUI {
 
             if(gameMechanic.hasGameEnded()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Congratulations!");
                 alert.setContentText("You won!");
-
                 alert.showAndWait();
             }
         }
@@ -45,6 +43,10 @@ public class GUI {
     @FXML
     public void initialize() {
         startNewGameButton.setOnAction(this::handleStartNewGameButton);
+        outputPairFound.textProperty().setValue("");
+        outputMistakes.textProperty().setValue("");
+        outputCurrentScore.textProperty().setValue("");
+        outputBestScore.textProperty().setValue("");
     }
 
     private void handleStartNewGameButton(ActionEvent event) {
@@ -52,15 +54,17 @@ public class GUI {
     }
 
     private void updateScore() {
-        outputScore.textProperty().setValue(gameMechanic.getScore().toString());
+        outputPairFound.textProperty().setValue(gameMechanic.getPairCount().toString());
         outputMistakes.textProperty().setValue(gameMechanic.getMistakes().toString());
+        outputCurrentScore.textProperty().setValue(gameMechanic.getCurrentScore().toString());
+        outputBestScore.textProperty().setValue(gameMechanic.getBestScore().toString());
     }
 
     private void resetGameGrid() {
-        updateScore();
         clearGameGrid();
         Button[][] memoryTiles = createNewTiles();
         createNewGameGrid(memoryTiles);
+        updateScore();
     }
 
     private void clearGameGrid() {
@@ -86,10 +90,6 @@ public class GUI {
         }
 
         gameGridPane.getChildren().add(gameGrid);
-    }
-
-    public GameMechanic getGameMechanic() {
-        return gameMechanic;
     }
 
     public void setGameMechanic(GameMechanic gameMechanic) {
