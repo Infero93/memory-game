@@ -3,6 +3,8 @@ package pl.techplayground.game;
 import javafx.scene.control.Button;
 import pl.techplayground.model.MemoryTile;
 
+import static pl.techplayground.Configuration.*;
+
 
 public class GameMechanic {
 
@@ -10,7 +12,7 @@ public class GameMechanic {
 
     private MemoryTile firstTile;
     private MemoryTile secondTile;
-    private Integer score = 0;
+    private Integer score;
     private Boolean pairFound;
 
     public GameMechanic(GameGridGenerator gameGridGenerator) {
@@ -26,7 +28,11 @@ public class GameMechanic {
     public void gameLoop(MemoryTile memoryTile) {
         clearTiles();
         tileClicked(memoryTile);
-        checkState();
+        updateState();
+    }
+
+    public boolean hasGameEnded() {
+        return score == (GRID_WIDTH * GRID_HEIGHT) / GRID_MAX_SAME_IMAGE_COUNT;
     }
 
     private void resetGameState() {
@@ -58,7 +64,7 @@ public class GameMechanic {
         memoryTile.toggleOriginalImage();
     }
 
-    private void checkState() {
+    private void updateState() {
         if(bothTilesSelected()) {
             if(firstTile == secondTile) {
                 System.out.println("Clicked same tile!");
@@ -74,6 +80,8 @@ public class GameMechanic {
             }
         }
     }
+
+
 
     private boolean bothTilesSelected() {
         return firstTile != null && secondTile != null;
