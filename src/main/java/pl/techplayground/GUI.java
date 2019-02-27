@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.TilePane;
 import pl.techplayground.game.GameMechanic;
 import pl.techplayground.model.MemoryTile;
 
@@ -16,10 +17,12 @@ import static pl.techplayground.Configuration.GRID_WIDTH;
 
 public class GUI {
     @FXML private FlowPane mainScene;
+    @FXML private TilePane gameGridPane;
     @FXML private Button startNewGameButton;
     @FXML private Label labelScore;
     @FXML private Label outputScore;
-    private GridPane gameGrid;
+    @FXML private Label outputMistakes;
+    @FXML private Label outputBestScore;
 
     private GameMechanic gameMechanic;
 
@@ -49,8 +52,8 @@ public class GUI {
     }
 
     private void updateScore() {
-        Integer score = gameMechanic.getScore();
-        outputScore.textProperty().setValue(score.toString());
+        outputScore.textProperty().setValue(gameMechanic.getScore().toString());
+        outputMistakes.textProperty().setValue(gameMechanic.getMistakes().toString());
     }
 
     private void resetGameGrid() {
@@ -61,9 +64,7 @@ public class GUI {
     }
 
     private void clearGameGrid() {
-        if(gameGrid != null) {
-            mainScene.getChildren().remove(gameGrid);
-        }
+        gameGridPane.getChildren().clear();
     }
 
     private Button[][] createNewTiles() {
@@ -79,12 +80,12 @@ public class GUI {
     }
 
     private void createNewGameGrid(Button[][] memoryTiles) {
-        gameGrid = new GridPane();
+        GridPane gameGrid = new GridPane();
         for(int i = 0; i < GRID_WIDTH; i++) {
             gameGrid.addRow(i, memoryTiles[i]);
         }
 
-        mainScene.getChildren().add(gameGrid);
+        gameGridPane.getChildren().add(gameGrid);
     }
 
     public GameMechanic getGameMechanic() {

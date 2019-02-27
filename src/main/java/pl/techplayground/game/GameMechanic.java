@@ -13,6 +13,7 @@ public class GameMechanic {
     private MemoryTile firstTile;
     private MemoryTile secondTile;
     private Integer score;
+    private Integer mistakes;
     private Boolean pairFound;
 
     public GameMechanic(GameGridGenerator gameGridGenerator) {
@@ -38,6 +39,7 @@ public class GameMechanic {
     private void resetGameState() {
         pairFound = false;
         score = 0;
+        mistakes = 0;
         firstTile = null;
         secondTile = null;
     }
@@ -77,10 +79,10 @@ public class GameMechanic {
             } else {
                 System.out.println("Clicked different tile with different image!");
                 pairFound = false;
+                mistakes += 1;
             }
         }
     }
-
 
 
     private boolean bothTilesSelected() {
@@ -89,5 +91,9 @@ public class GameMechanic {
 
     public Integer getScore() {
         return score;
+    }
+
+    public Integer getMistakes() {
+        return mistakes;
     }
 }
