@@ -6,7 +6,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import pl.techplayground.game.GameGridGenerator;
 import pl.techplayground.game.GameMechanic;
@@ -33,6 +35,9 @@ public class MemoryGame extends Application {
             }
         };
 
+        FlowPane flowPane = new FlowPane();
+
+        VBox vbox = new VBox(new Label("Hello World"));
         GridPane gridPane = new GridPane();
 
         for(int i = 0; i < GRID_WIDTH; i++) {
@@ -44,7 +49,13 @@ public class MemoryGame extends Application {
         gridPane.addRow(0, button[0]);
         gridPane.addRow(1, button[1]);
         gridPane.addRow(2, button[2]);
-        Scene scene = new Scene(gridPane, 640, 480);
+
+        flowPane.getChildren().add(vbox);
+        flowPane.getChildren().add(gridPane);
+
+        flowPane.setHgap(15);
+
+        Scene scene = new Scene(flowPane, 640, 480);
         stage.setScene(scene);
         stage.show();
     }
