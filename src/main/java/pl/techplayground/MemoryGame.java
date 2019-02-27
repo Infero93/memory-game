@@ -29,6 +29,8 @@ public class MemoryGame extends Application {
         controller.setGameMechanic(gameMechanic);
 
         Scene scene = new Scene(pane);
+        stage.setTitle("Memory game");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
