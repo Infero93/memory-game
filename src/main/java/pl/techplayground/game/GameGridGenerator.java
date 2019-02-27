@@ -45,7 +45,7 @@ public class GameGridGenerator {
                     timesImageUsed = 0;
                 }
 
-                if(currentIndexOfImage >= images.size()) {
+                if(currentIndexOfImage > images.size()) {
                     if(GRID_ALLOW_REUSE_IMAGES) {
                         currentIndexOfImage = 0;
                     } else {
