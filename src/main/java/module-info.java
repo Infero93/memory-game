@@ -1,4 +1,6 @@
-module memory_game {
+module memory.game {
     requires javafx.controls;
-    opens pl.techplayground to javafx.graphics;
+    requires javafx.fxml;
+    opens pl.techplayground to javafx.fxml;
+    exports pl.techplayground;
 }
