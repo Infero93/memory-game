@@ -16,7 +16,6 @@ public class MemoryTile extends Button {
     private final ImageView imageView;
     private final Image image;
     private final Integer imageIndex;
-    private boolean toggled;
 
     public MemoryTile(Image image, ImageView imageView, Integer imageIndex) {
         super(EMPTY_STRING, imageView);
@@ -24,7 +23,6 @@ public class MemoryTile extends Button {
         this.image = image;
         this.imageView = imageView;
         this.imageIndex = imageIndex;
-        this.toggled = false;
 
         imageView.setImage(ImageLoader.getDefaultImage());
 
