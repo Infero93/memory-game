@@ -2,15 +2,19 @@ package pl.techplayground;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import pl.techplayground.game.GameMechanic;
 import pl.techplayground.model.MemoryTile;
+import pl.techplayground.util.ImageLoader;
 
 import static pl.techplayground.Configuration.GRID_HEIGHT;
 import static pl.techplayground.Configuration.GRID_WIDTH;
@@ -18,11 +22,13 @@ import static pl.techplayground.Configuration.GRID_WIDTH;
 public class GUI {
     @FXML private FlowPane mainScene;
     @FXML private TilePane gameGridPane;
+    @FXML private ImageView gameIconView;
     @FXML private Button startNewGameButton;
     @FXML private Label outputPairFound;
     @FXML private Label outputMistakes;
     @FXML private Label outputCurrentScore;
     @FXML private Label outputBestScore;
+    @FXML private Label labelGameTitle;
 
     private GameMechanic gameMechanic;
 
@@ -47,6 +53,7 @@ public class GUI {
         outputMistakes.textProperty().setValue("");
         outputCurrentScore.textProperty().setValue("");
         outputBestScore.textProperty().setValue("");
+        labelGameTitle.setAlignment(Pos.BASELINE_CENTER);
     }
 
     private void handleStartNewGameButton(ActionEvent event) {

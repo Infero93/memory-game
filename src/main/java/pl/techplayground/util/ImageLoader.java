@@ -45,7 +45,11 @@ public class ImageLoader {
         return Collections.unmodifiableList(IMAGES);
     }
 
-    private static Image getImageFromResourcesFolder(String filename, int width, int height) {
+    public static Image getImageFromResourcesFolder(String filename, int width, int height) {
         return new Image(ImageLoader.class.getResourceAsStream("/images/" + filename), width,height, false, false);
+    }
+
+    public static Image getImageFromResourcesFolder(String filename) {
+        return new Image(ImageLoader.class.getResourceAsStream("/images/" + filename));
     }
 }
